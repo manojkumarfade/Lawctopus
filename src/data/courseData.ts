@@ -303,6 +303,58 @@ export const testimonialsData: Testimonial[] = [
   { name: 'Vikram Singh', role: 'Academician, ILS Pune', text: 'As a teacher myself, I was blown away by the curriculum structure. It bridges the exact gap between law school theory and law firm expectations.', rating: 5 },
 ];
 
+export interface PolicyContent {
+  title: string;
+  content: string[];
+}
+
+export const termsOfUse: PolicyContent = {
+  title: 'Terms of Use',
+  content: [
+    'By accessing or using the Lawctopus Law School website and course materials, you agree to be bound by these Terms of Use. If you do not agree, please do not use this website or enrol in any course.',
+    'All course content, including but not limited to text, graphics, videos, templates, assignments, and recordings, is the intellectual property of Lawctopus Law School. You may not reproduce, distribute, or create derivative works without prior written consent.',
+    'Enrolment in a course grants you a non-exclusive, non-transferable license to access the materials for personal educational use only. Sharing login credentials or course materials with third parties is strictly prohibited.',
+    'You agree to provide accurate and complete information during registration. Lawctopus Law School reserves the right to cancel enrolment if虚假 or misleading information is provided.',
+    'Fees once paid are subject to the Refund Policy as described on this page. Late payments may result in suspension of access to live sessions and course materials.',
+    'Lawctopus Law School reserves the right to modify, suspend, or discontinue any course or service at any time with prior notice where reasonably practicable.',
+    'We are not responsible for any direct, indirect, incidental, or consequential damages arising from your use of the website or participation in the course. Our total liability is limited to the fee paid by you for the specific course.',
+    'These Terms shall be governed by the laws of India. Any disputes arising out of these terms shall be subject to the exclusive jurisdiction of the courts in Delhi.',
+    'We may update these Terms from time to time. Continued use of the website after changes constitutes acceptance of the modified terms.'
+  ]
+};
+
+export const privacyPolicy: PolicyContent = {
+  title: 'Privacy Policy',
+  content: [
+    'Lawctopus Law School respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or enrol in our courses.',
+    'We collect personal information that you voluntarily provide to us when you register, including your name, email address, phone number, and professional details. We also collect usage data such as pages visited, time spent, and interaction patterns to improve our services.',
+    'Your information is used to process enrolments, deliver course content, communicate important updates, and provide personalised feedback on assignments. We may also use anonymised data for internal analytics and course improvement.',
+    'We do not sell, trade, or rent your personal information to third parties. We may share your data with trusted service providers (payment gateways, email platforms) solely for the purpose of delivering our services, subject to strict confidentiality agreements.',
+    'We implement industry-standard security measures including SSL encryption, secure data storage, and restricted access controls to protect your personal information from unauthorised access, alteration, or disclosure.',
+    'You have the right to access, correct, or delete your personal data at any time by contacting us at support@lawctopus.com. You may also opt out of marketing communications at any time.',
+    'We use cookies and similar tracking technologies to enhance your browsing experience. You can control cookie preferences through your browser settings. Disabling cookies may affect certain website functionalities.',
+    'Our services are not intended for individuals under 18 years of age. We do not knowingly collect personal information from minors.',
+    'We may update this Privacy Policy periodically. Material changes will be communicated via email or through a prominent notice on our website. Continued use after changes constitutes acceptance.',
+    'For any questions or concerns regarding this policy, please contact us at support@lawctopus.com.'
+  ]
+};
+
+export const refundPolicy: PolicyContent = {
+  title: 'Refund Policy',
+  content: [
+    'Lawctopus Law School offers a 100% Risk-Free Guarantee on our Mastering Contract Drafting and Freelancing course. We are confident in the quality and effectiveness of our curriculum.',
+    'To be eligible for a full refund, you must meet the following criteria: (a) Attend at least 66% of live classes with your video turned on, (b) Submit all 10 drafting assignments and receive passing grades, and (c) Email your refund request to support@lawctopus.com within 10 days after course completion.',
+    'Refund requests must be sent from the same email address used during registration. Please include your full name, registration code, and a brief explanation of your reason for requesting a refund.',
+    'Once your refund request is received, our team will review it within 5-7 business days. If all eligibility criteria are satisfied, the full course fee will be refunded to the original payment method within 10-15 business days.',
+    'Partial refunds may be considered on a case-by-case basis for students who withdraw before the course midpoint (end of Month 3). The refund amount will be prorated based on the portion of the course completed, minus an administrative fee of ₹2,500.',
+    'No refunds will be issued for withdrawals after Month 3, except under the 100% Risk-Free Guarantee described above.',
+    'Refunds for promotional or discounted enrolments are subject to the same terms. The refund amount will not exceed the actual fee paid.',
+    'If a session is cancelled by Lawctopus Law School, a replacement session will be scheduled. If a course is discontinued before completion, a pro-rata refund will be issued for the unfinished portion.',
+    'International transaction fees, currency conversion charges, or bank processing fees are non-refundable and will be deducted from the refund amount where applicable.',
+    'Please allow up to 15 business days for the refund to reflect in your account after approval. For any disputes or escalations, contact us at courses@lawctopus.com.'
+  ]
+};
+
 export const faqData: FaqItem[] = [
   {
     question: 'Who is this course for?',

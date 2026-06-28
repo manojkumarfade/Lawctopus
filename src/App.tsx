@@ -36,6 +36,7 @@ import {
   FacultyMember,
   MonthCurriculum,
   FaqItem,
+  PolicyContent,
   trustBarMetrics,
   problemCards,
   challengesData,
@@ -44,7 +45,10 @@ import {
   curriculumData,
   facultyData,
   whoShouldJoinCards,
-  faqData
+  faqData,
+  termsOfUse,
+  privacyPolicy,
+  refundPolicy
 } from './data/courseData';
 
 // Imported Sub-page Views for Spatial Layout
@@ -89,6 +93,15 @@ export default function App() {
 
   // Pricing tier state
   const [pricingTier, setPricingTier] = useState<'student' | 'professional'>('student');
+
+  // Policy modal state
+  const [policyModalOpen, setPolicyModalOpen] = useState(false);
+  const [activePolicy, setActivePolicy] = useState<PolicyContent | null>(null);
+
+  const openPolicy = (policy: PolicyContent) => {
+    setActivePolicy(policy);
+    setPolicyModalOpen(true);
+  };
 
   // Active Tab state for spatial UI
   const [activeTab, setActiveTab] = useState<'overview' | 'problems' | 'syllabus' | 'career' | 'faculty' | 'investment'>('overview');
@@ -491,9 +504,9 @@ export default function App() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 text-[11px] text-slate-400 font-semibold" id="footer-bottom">
             <p>© 2026 Lawctopus Law School. All rights reserved.</p>
             <div className="flex gap-4">
-              <span className="cursor-pointer hover:text-brand transition-colors">Terms of Use</span>
-              <span className="cursor-pointer hover:text-brand transition-colors">Privacy Policy</span>
-              <span className="cursor-pointer hover:text-brand transition-colors">Refund Policy</span>
+              <span onClick={() => openPolicy(termsOfUse)} className="cursor-pointer hover:text-brand transition-colors">Terms of Use</span>
+              <span onClick={() => openPolicy(privacyPolicy)} className="cursor-pointer hover:text-brand transition-colors">Privacy Policy</span>
+              <span onClick={() => openPolicy(refundPolicy)} className="cursor-pointer hover:text-brand transition-colors">Refund Policy</span>
             </div>
           </div>
         </div>
@@ -706,6 +719,56 @@ export default function App() {
               </motion.div>
             </div>
 
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* POLICY MODAL */}
+      <AnimatePresence>
+        {policyModalOpen && activePolicy && (
+          <div className="fixed inset-0 z-50 overflow-y-auto" id="policy-modal-portal">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setPolicyModalOpen(false)}
+              className="fixed inset-0 bg-slate-950/40 backdrop-blur-xs"
+              id="policy-modal-backdrop"
+            />
+            <div className="flex min-h-full items-center justify-center p-4">
+              <motion.div
+                initial={{ scale: 0.98, opacity: 0, y: 10 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.98, opacity: 0, y: 10 }}
+                className="relative transform overflow-hidden rounded-xl bg-white text-left shadow-xl transition-all w-full max-w-2xl max-h-[90vh] flex flex-col border border-slate-250"
+                id="policy-modal-card"
+              >
+                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 shrink-0 bg-white sticky top-0 z-10" id="policy-modal-header">
+                  <h3 className="font-display font-bold text-slate-900 text-base">{activePolicy.title}</h3>
+                  <button
+                    onClick={() => setPolicyModalOpen(false)}
+                    className="text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors cursor-pointer"
+                    id="policy-modal-close-btn"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                <div className="px-6 py-5 overflow-y-auto space-y-4 text-slate-600 text-xs sm:text-sm leading-relaxed" id="policy-modal-body">
+                  {activePolicy.content.map((para, idx) => (
+                    <p key={idx} id={`policy-para-${idx}`}>{para}</p>
+                  ))}
+                </div>
+                <div className="px-6 py-4 border-t border-slate-100 shrink-0 bg-white sticky bottom-0 flex justify-end" id="policy-modal-footer">
+                  <button
+                    onClick={() => setPolicyModalOpen(false)}
+                    className="bg-slate-900 hover:bg-slate-800 text-white text-[10px] font-bold uppercase tracking-wider px-6 py-2.5 rounded-full transition-all cursor-pointer"
+                    id="policy-modal-close-footer-btn"
+                  >
+                    Close
+                  </button>
+                </div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
