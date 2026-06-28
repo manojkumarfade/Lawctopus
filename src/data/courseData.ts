@@ -287,6 +287,22 @@ export const whoShouldJoinCards = [
   }
 ];
 
+export interface Testimonial {
+  name: string;
+  role: string;
+  text: string;
+  rating: number;
+}
+
+export const testimonialsData: Testimonial[] = [
+  { name: 'Ananya Sharma', role: 'Law Student, NLSIU Bangalore', text: 'This course completely changed my understanding of commercial drafting. Within 2 months, I landed a corporate internship because I could actually draft clauses during the interview.', rating: 5 },
+  { name: 'Rahul Verma', role: 'Young Lawyer, Delhi', text: 'The freelancing module is worth the entire fee. I started taking Upwork projects in month 4 and earned back my course fee before graduation.', rating: 5 },
+  { name: 'Priya Mehta', role: 'Solo Practitioner, Mumbai', text: 'Finally a course that teaches real-world drafting instead of textbook theory. The line-by-line feedback on my assignments was invaluable.', rating: 5 },
+  { name: 'Arjun Nair', role: 'Corporate Legal Intern', text: 'The interactive sandbox challenges opened my eyes to how dangerous standard templates can be. I redline my firm\'s NDAs now with total confidence.', rating: 5 },
+  { name: 'Sneha Patel', role: 'Freelance Legal Consultant', text: 'I went from zero freelancing experience to $3k+ in billings within 4 months of joining. The profile optimisation and proposal workshops were game-changers.', rating: 5 },
+  { name: 'Vikram Singh', role: 'Academician, ILS Pune', text: 'As a teacher myself, I was blown away by the curriculum structure. It bridges the exact gap between law school theory and law firm expectations.', rating: 5 },
+];
+
 export const faqData: FaqItem[] = [
   {
     question: 'Who is this course for?',

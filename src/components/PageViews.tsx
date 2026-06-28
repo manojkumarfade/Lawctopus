@@ -1,4 +1,4 @@
-import { useState, RefObject } from 'react';
+import { useState, useRef, RefObject } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, 
@@ -25,6 +25,7 @@ import {
   MonthCurriculum, 
   FacultyMember, 
   FaqItem,
+  Testimonial,
   trustBarMetrics,
   problemCards,
   challengesData,
@@ -33,7 +34,8 @@ import {
   curriculumData,
   facultyData,
   whoShouldJoinCards,
-  faqData
+  faqData,
+  testimonialsData
 } from '../data/courseData';
 
 // ----------------------------------------------------
@@ -114,6 +116,9 @@ export function OverviewView({ timeLeft, openEnrollModal, selectTab }: OverviewP
         </div>
       </div>
 
+      {/* Testimonials / Social Proof Carousel */}
+      <TestimonialsSection />
+
       {/* Trust Metrics Section */}
       <div className="bg-slate-50/50 rounded-2xl p-6 border border-slate-150" id="overview-trust-panel">
         <h3 className="font-display font-bold text-slate-800 text-xs uppercase tracking-wider mb-5 text-center">Proven Training Impact & Reach</h3>
@@ -131,6 +136,67 @@ export function OverviewView({ timeLeft, openEnrollModal, selectTab }: OverviewP
             );
           })}
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ----------------------------------------------------
+// 1b. TESTIMONIALS SECTION (used inside Overview)
+// ----------------------------------------------------
+function TestimonialsSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm" id="testimonials-section">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <span className="text-[10px] text-brand font-extrabold uppercase tracking-wider block mb-1">Student Testimonials</span>
+          <h3 className="font-display font-bold text-slate-900 text-lg">Trusted by 20,000+ learners</h3>
+        </div>
+        <div className="flex gap-1">
+          <button
+            onClick={() => scrollRef.current?.scrollBy({ left: -320, behavior: 'smooth' })}
+            className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors cursor-pointer"
+            aria-label="Scroll left"
+          >
+            <ChevronDown className="w-4 h-4 rotate-90" />
+          </button>
+          <button
+            onClick={() => scrollRef.current?.scrollBy({ left: 320, behavior: 'smooth' })}
+            className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors cursor-pointer"
+            aria-label="Scroll right"
+          >
+            <ChevronDown className="w-4 h-4 -rotate-90" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory -mx-1 px-1 pb-2"
+        id="testimonials-scroll"
+      >
+        {testimonialsData.map((t, idx) => (
+          <div
+            key={idx}
+            className="snap-start shrink-0 w-[290px] sm:w-[320px] bg-slate-50/50 rounded-xl p-5 border border-slate-200 flex flex-col justify-between"
+            id={`testimonial-card-${idx}`}
+          >
+            <div>
+              <div className="flex gap-0.5 mb-3">
+                {Array.from({ length: t.rating }).map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-slate-600 text-xs leading-relaxed italic">"{t.text}"</p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-slate-200/60">
+              <p className="font-display font-bold text-slate-900 text-xs">{t.name}</p>
+              <p className="text-slate-400 text-[10px] font-semibold">{t.role}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
